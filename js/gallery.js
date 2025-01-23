@@ -77,6 +77,7 @@ galleryContainer.addEventListener('click', (e) => {
 
     instance.show();
 });
+// Создание и добавление стилей
 const style = document.createElement('style');
 document.head.appendChild(style);
 style.textContent = `
@@ -85,22 +86,20 @@ style.textContent = `
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 100px 156px;
-    width: 1440px;
-    height: 848px;
     list-style-type: none;
     margin: 0;
   }
 
   .gallery-item {
-     width: calc(33.33% - 24px);
-     margin-bottom: 48px;
+    width: calc(33.33% - 24px);
+    margin-bottom: 48px;
   }
 
   .gallery-item img {
     width: 100%;
-    height: 100%;
+    height: auto; /* Для автоматической подстройки высоты */
     object-fit: cover;
   }
-`;  
+`;
 
 
