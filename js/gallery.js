@@ -63,4 +63,41 @@ const images = [
         описание: 'Lighthouse Coast Sea',
       },
     ];
-    
+   // Находим контейнер галереи
+const galleryContainer = document.querySelector('.gallery');
+
+// Создаем разметку элементов галереи
+const galleryMarkup = images
+  .map(
+    ({ preview, original, description }) => `
+  <li class="gallery-item">
+    <a class="gallery-link" href="${original}">
+      <img
+        class="gallery-image"
+        src="${preview}"
+        data-source="${original}"
+        alt="${description}"
+      />
+    </a>
+  </li>`
+  )
+  .join('');
+
+// Добавляем разметку в DOM
+galleryContainer.innerHTML = galleryMarkup;
+
+// Делегирование: слушаем клики по ul.gallery
+galleryContainer.addEventListener('click', (event) => {
+  // Предотвращаем стандартное поведение ссылок
+  event.preventDefault();
+
+  // Проверяем, был ли клик по изображению
+  const target = event.target;
+  if (target.nodeName === 'IMG') {
+    const largeImageURL = target.dataset.source; // Получаем ссылку на большое изображение
+    console.log('Ссылка на большое изображение:', largeImageURL);
+
+    // Здесь можно добавить функционал открытия модального окна
+  }
+});
+ 
