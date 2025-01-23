@@ -47,62 +47,48 @@ const images = [
 ];
     
     
-  const galleryContainer = document.createElement('ul');
-  galleryContainer.classList.add('gallery');
+const gallery = document.querySelector('.gallery');
   
-  images.forEach((image) => {
-    const galleryItem = `
-      <li class="gallery-item">
-        <a class="gallery-link" href="${image.original}">
-          <img
-            class="gallery-image"
-            src="${image.preview}"
-            data-source="${image.original}"
-            alt="${image.description}"
-          />
-        </a>
-      </li>
-    `;
-    galleryContainer.innerHTML += galleryItem;
-  });
-  document.body.appendChild(galleryContainer);
+ 
+const galleryItems = images.map(image => {
+  const li = document.createElement('li');
+  li.classList.add('gallery-item'); // Add the class for styling
+
+  const img = document.createElement('img');
+  img.src = image.url;
+  img.alt = image.alt;
+
+  li.appendChild(img);
   
-  import "basiclightbox/dist/basiclightbox.min.css";
-  
-  const lightbox = document.createElement('div');
-  lightbox.classList.add('basicLightbox');
-  document.body.appendChild(lightbox);
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const galleryLinks = document.querySelectorAll('.gallery-link');
-  
-    galleryLinks.forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const imageSource = link.getAttribute('href');
-        const lightboxImage = `
-          <img
-            class="lightbox-image"
-            src="${imageSource}"
-            alt="${link.querySelector('img').getAttribute('alt')}"
-          />
-        `;
-        lightbox.innerHTML = lightboxImage;
-        lightbox.classList.add('open');
-        document.addEventListener('click', (e) => {
-          if (e.target.classList.contains('basicLightbox')) {
-            lightbox.classList.remove('open');
-          }
-        });
-      });
-    });
-  });
-  
-  const gallery = document.querySelector('.gallery');
-  
-  gallery.addEventListener('click', (e) => {
-    if (e.target.classList.contains('gallery-link')) {
-      const imageSource = e.target.getAttribute('href');
-      console.log(imageSource);
-    }
-  });
+  return li;
+});
+
+
+gallery.append(...galleryItems);
+
+
+const style = document.createElement('style');
+document.head.appendChild(style);
+style.textContent = `
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 100px 156px;
+    width: 1440px;
+    height: 848px;
+    list-style-type: none;
+    margin: 0;
+  }
+
+  .gallery-item {
+     width: calc(33.33% - 24px);
+     margin-bottom: 48px;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
