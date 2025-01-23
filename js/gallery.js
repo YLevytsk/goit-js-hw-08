@@ -76,6 +76,31 @@ galleryContainer.addEventListener('click', (e) => {
     `);
 
     instance.show();
-});   
+});
+const style = document.createElement('style');
+document.head.appendChild(style);
+style.textContent = `
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 100px 156px;
+    width: 1440px;
+    height: 848px;
+    list-style-type: none;
+    margin: 0;
+  }
+
+  .gallery-item {
+     width: calc(33.33% - 24px);
+     margin-bottom: 48px;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;  
 
 
