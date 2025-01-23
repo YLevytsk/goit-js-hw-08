@@ -1,30 +1,4 @@
-// Создание и добавление стилей
-// Создание и добавление стилей
-const style = document.createElement('style');
-document.head.appendChild(style);
-style.textContent = `
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 100px 156px;
-    list-style-type: none;
-    margin: 0;
-  }
 
-  .gallery-item {
-    width: calc(33.33% - 24px);
-    margin-bottom: 48px;
-  }
-
-  .gallery-item img {
-    width: 100%;
-    height: auto; /* Для автоматической подстройки высоты */
-    object-fit: cover;
-  }
-`;
-
-// Массив изображений для галереи
 const images = [
   {
       preview: 'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
