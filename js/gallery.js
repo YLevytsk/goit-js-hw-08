@@ -46,24 +46,36 @@ const images = [
     },
 ];
     
-    
-const gallery = document.querySelector('.gallery');
-  
- 
-const galleryItems = images.map(image => {
-  const li = document.createElement('li');
-  li.classList.add('gallery-item'); 
+const galleryContainer = document.querySelector('.gallery');
 
-  const img = document.createElement('img');
-  img.src = image.url;
-  img.alt = image.alt;
-
-  li.appendChild(img);
-  
-  return li;
+// Генерация HTML для галереи
+images.forEach((image) => {
+    const galleryItem = `
+        <li class="gallery-item">
+            <a class="gallery-link" href="${image.original}">
+                <img
+                    class="gallery-image"
+                    src="${image.preview}"
+                    data-source="${image.original}"
+                    alt="${image.description}"
+                />
+            </a>
+        </li>
+    `;
+    galleryContainer.innerHTML += galleryItem;
 });
 
+// Обработчик клика по изображениям
+galleryContainer.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.nodeName !== 'IMG') return; // Если кликнули не по изображению, выходим
+    const largeImageURL = e.target.dataset.source;
 
-gallery.append(...galleryItems);
+    const instance = basicLightbox.create(`
+        <img src="${largeImageURL}" alt="${e.target.alt}">
+    `);
+
+    instance.show();
+});   
 
 
