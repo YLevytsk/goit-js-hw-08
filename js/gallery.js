@@ -52,7 +52,7 @@ const gallery = document.querySelector('.gallery');
  
 const galleryItems = images.map(image => {
   const li = document.createElement('li');
-  li.classList.add('gallery-item'); // Add the class for styling
+  li.classList.add('gallery-item'); 
 
   const img = document.createElement('img');
   img.src = image.url;
