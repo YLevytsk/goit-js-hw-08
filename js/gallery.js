@@ -47,40 +47,34 @@ const images = [
   },
 ];
 
-// Создаем элемент галереи
-const galleryContainer = document.createElement('ul');
-galleryContainer.classList.add('gallery');
-document.body.appendChild(galleryContainer);
+const galleryContainer = document.querySelector('.gallery');
 
 // Генерация HTML для галереи
 images.forEach((image) => {
-  const galleryItem = document.createElement('li');
-  galleryItem.classList.add('gallery-item');
-
-  const anchor = document.createElement('a');
-  anchor.classList.add('gallery-link');
-  anchor.href = image.original;
-
-  const img = document.createElement('img');
-  img.classList.add('gallery-image');
-  img.src = image.preview;
-  img.dataset.source = image.original;
-  img.alt = image.description;
-
-  anchor.appendChild(img);
-  galleryItem.appendChild(anchor);
-  galleryContainer.appendChild(galleryItem);
+    const galleryItem = `
+        <li class="gallery-item">
+            <a class="gallery-link" href="${image.original}">
+                <img
+                    class="gallery-image"
+                    src="${image.preview}"
+                    data-source="${image.original}"
+                    alt="${image.description}"
+                />
+            </a>
+        </li>
+    `;
+    galleryContainer.innerHTML += galleryItem;
 });
 
 // Обработчик клика по изображениям
 galleryContainer.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (e.target.nodeName !== 'IMG') return; // Если кликнули не по изображению, выходим
-  const largeImageURL = e.target.dataset.source;
+    e.preventDefault();
+    if (e.target.nodeName !== 'IMG') return; // Если кликнули не по изображению, выходим
+    const largeImageURL = e.target.dataset.source;
 
-  const instance = basicLightbox.create(`
-    <img src="${largeImageURL}" alt="${e.target.alt}">
-  `);
+    const instance = basicLightbox.create(`
+        <img src="${largeImageURL}" alt="${e.target.alt}">
+    `);
 
-  instance.show();
-});
+    instance.show();
+}); 
