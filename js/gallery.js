@@ -108,7 +108,8 @@ style.textContent = `
     list-style-type: none;
     margin: 0;
   }
- body {
+    
+  body {
     margin: 0;
     overflow-x: hidden;
     
