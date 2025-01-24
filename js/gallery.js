@@ -107,6 +107,7 @@ style.textContent = `
     max-width: 100%;
     list-style-type: none;
     margin: 0;
+    gap: 24px;
   }
 
   body {
