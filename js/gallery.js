@@ -91,8 +91,9 @@ gallery.addEventListener('click', (event) => {
   if (imgEl.nodeName !== 'IMG') return;
 
   const instance = basicLightbox.create(`
-    <img src="${imgEl.dataset.source}" alt="${imgEl.alt}" width="800" height="600">
+    <img src="${imgEl.dataset.source}" alt="${imgEl.alt}" style="max-width: 100vw; max-height: 100vh;">
   `);
+  
   instance.show();
 });
 
@@ -103,12 +104,15 @@ style.textContent = `
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 100px 156px;
-    width: 1440px;
-    height: 848px;
+    max-width: 100%;
     list-style-type: none;
     margin: 0;
   }
-
+ body {
+    margin: 0;
+    overflow-x: hidden;
+    
+  }
   .gallery-item {
      width: calc(33.33% - 24px);
      margin-bottom: 48px;
