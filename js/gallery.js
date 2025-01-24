@@ -91,7 +91,7 @@ gallery.addEventListener('click', (event) => {
   if (imgEl.nodeName !== 'IMG') return;
 
   const instance = basicLightbox.create(`
-    <img src="${imgEl.dataset.source}" alt="${imgEl.alt}" style="max-width: 100vw; max-height: 100vh;">
+    <img src="${imgEl.dataset.source}" alt="${imgEl.alt}" style="width: 1112px; height: 640px;">
   `);
   
   instance.show();
@@ -103,12 +103,12 @@ style.textContent = `
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 100px 156px;
+    padding: 156px;
     max-width: 100%;
     list-style-type: none;
     margin: 0;
   }
-    
+
   body {
     margin: 0;
     overflow-x: hidden;
@@ -116,7 +116,7 @@ style.textContent = `
   }
   .gallery-item {
      width: calc(33.33% - 24px);
-     margin-bottom: 48px;
+     margin-bottom: 24px;
   }
 
   .gallery-item img {
